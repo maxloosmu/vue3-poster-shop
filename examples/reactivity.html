@@ -1,0 +1,13 @@
+<script>
+	const vm = Vue.createApp({
+		data() {
+			return {
+				message: ""
+			};
+		},
+		template: "<div>{{ message }}</div>"
+	});
+
+	// set `message` later
+	vm.message = "Hello!";
+</script>
