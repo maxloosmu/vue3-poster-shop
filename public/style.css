@@ -366,3 +366,30 @@ body {
         display: none;
     }
 }
+
+/*Fade transition*/
+
+.fade-enter-from {
+	opacity: 0
+}
+
+.fade-enter-active {
+	transition: opacity .5s
+}
+
+[v-cloak] {
+	display: none !important;
+}
+
+[v-cloak] > * {
+	display: none;
+}
+
+[v-cloak] > #loading {
+	display: block;
+	padding: 1em;
+}
+
+#loading {
+	display: none;
+}

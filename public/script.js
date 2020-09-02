@@ -1,12 +1,16 @@
+const LOAD_NUM = 4;
+let watcher;
+
 Vue.createApp({
 	data() {
 		return {
 			total: 0,
 			products: [],
 			cart: [],
-			search: "",
+			search: "cat",
 			lastSearch: "",
-			loading: false
+			loading: false,
+			results: []
 		};
 	},
 	methods: {
@@ -44,15 +48,39 @@ Vue.createApp({
 			}
 		},
 		onSubmit() {
+			this.results = [];
 			this.products = [];
 			this.loading = true;
 			fetch("/search?q=".concat(this.search))
 				.then(response => response.json())
 				.then(body => {
 					this.lastSearch = this.search;
-					this.products = body;
+					this.results = body;
+					this.appendResults();
 					this.loading = false;
 				});
+		},
+		appendResults() {
+			if (this.products.length < this.results.length) {
+				const toAppend = this.results.slice(
+					this.products.length, this.products.length + LOAD_NUM
+				);
+				this.products = this.products.concat(toAppend);
+			}
+		}
+	},
+	created() {
+		this.onSubmit();
+	},
+	updated() {
+		const sensor = document.querySelector("#product-list-bottom");
+		watcher = scrollMonitor.create(sensor);
+		watcher.enterViewport(this.appendResults);
+	},
+	beforeUpdate() {
+		if (watcher) {
+			watcher.destroy();
+			watcher = null;
 		}
 	}
 }).mount("#app");
