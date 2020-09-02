@@ -1,17 +1,21 @@
-const LOAD_NUM = 4;
 let watcher;
 
 Vue.createApp({
 	data() {
 		return {
 			total: 0,
-			products: [],
 			cart: [],
 			search: "cat",
 			lastSearch: "",
 			loading: false,
-			results: []
+			results: [],
+			listLength: 0
 		};
+	},
+	computed: {
+		products () {
+			return this.results.slice(0, this.listLength);
+		}
 	},
 	methods: {
 		addToCart(product) {
@@ -49,7 +53,7 @@ Vue.createApp({
 		},
 		onSubmit() {
 			this.results = [];
-			this.products = [];
+			this.listLength = 0;
 			this.loading = true;
 			fetch("/search?q=".concat(this.search))
 				.then(response => response.json())
@@ -61,11 +65,8 @@ Vue.createApp({
 				});
 		},
 		appendResults() {
-			if (this.products.length < this.results.length) {
-				const toAppend = this.results.slice(
-					this.products.length, this.products.length + LOAD_NUM
-				);
-				this.products = this.products.concat(toAppend);
+			if (this.listLength < this.results.length) {
+				this.listLength += 4;
 			}
 		}
 	},
