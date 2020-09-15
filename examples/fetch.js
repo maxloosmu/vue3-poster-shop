@@ -1,7 +1,7 @@
 fetch("/api")
-	.then(function (response) {
+	.then(function(response) {
 		return response.json();
 	})
-	.then(function (body) {
+	.then(function(body) {
 		console.log(body);
 	});

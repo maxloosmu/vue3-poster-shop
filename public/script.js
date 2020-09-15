@@ -20,14 +20,10 @@ Vue.createApp({
 	methods: {
 		addToCart(product) {
 			this.total += product.price;
-			let found = false;
-			for (let i = 0; i < this.cart.length; i++) {
-				if (this.cart[i].id === product.id) {
-					found = true;
-					this.cart[i].qty++;
-				}
-			}
-			if (!found) {
+			const item = this.cart.find(item => item.id === product.id);
+			if (item) {
+				item.qty++;
+			} else {
 				this.cart.push({
 					id: product.id,
 					title: product.title,
