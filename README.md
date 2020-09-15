@@ -21,7 +21,7 @@ Ensure [Node.js  >=4](https://nodejs.org/en/download/), [NPM](https://docs.npmjs
         ```
         cd /path/to/install/location
         
-        git clone https://github.com/[your_username]/poster-shop.git
+        git clone https://git.vuejsdevelopers.com/{your-namespace}/poster-shop/
         ```
 
 2. Change directory into the local clone of the repository
