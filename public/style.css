@@ -391,6 +391,10 @@ body {
 	padding: 1em;
 }
 
+.cloaking {
+    font-size: 3rem;
+}
+
 #loading {
 	display: none;
 }

@@ -15,6 +15,7 @@
 	<div id="loading">
 		Loading...
 	</div>
+
     <div class="header">
 		<div class="container">
 			<div class="title">
@@ -28,9 +29,10 @@
 			<p>Try search terms <em>cat, dog, flower</em></p>
 		</div>
     </div>
+
     <div class="main container">
 		<div class="products">
-			<div v-if="loading">
+			<div class="cloaking" v-if="loading">
 				Loading...
 			</div>
 			<div class="search-results" v-else>

@@ -51,6 +51,14 @@ Vue.createApp({
 			this.results = [];
 			this.listLength = 0;
 			this.loading = true;
+			setTimeout(() => this.delayFetch(), 3000);
+		},
+		appendResults() {
+			if (this.listLength < this.results.length) {
+				this.listLength += 4;
+			}
+		},
+		delayFetch() {
 			fetch("/search?q=".concat(this.search))
 				.then(response => response.json())
 				.then(body => {
@@ -59,11 +67,7 @@ Vue.createApp({
 					this.appendResults();
 					this.loading = false;
 				});
-		},
-		appendResults() {
-			if (this.listLength < this.results.length) {
-				this.listLength += 4;
-			}
+			console.log("Waited 3s");	
 		}
 	},
 	created() {
