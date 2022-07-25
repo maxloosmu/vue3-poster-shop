@@ -28,7 +28,9 @@ workflows:
   # echo "No Heroku API key set, please set the HEROKU_API_KEY environment variable."
   # echo "This can be found by running the `heroku auth:token` command locally."
   # https://circleci.com/developer/orbs/orb/circleci/heroku
-  sample:
+  # https://circleci.com/docs/deployment-examples
+  # https://circleci.com/docs/env-vars#setting-an-environment-variable-in-a-project
+  heroku_deploy:
     jobs:
       - node/test
       - heroku/deploy-via-git:
