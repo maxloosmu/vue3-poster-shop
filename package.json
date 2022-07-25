@@ -4,10 +4,10 @@
   "description": "Vue.js Poster Shop",
   "main": "index.js",
   "scripts": {
-    // "start": "node server.js",
+
     "serve": "nodemon ./server.js --ignore node_modules/ -e js,html,css",
     "lint": "eslint server.js public/script.js",
-    // "postinstall": "npm run serve"
+
   },
   "author": "Anthony Gore, Max Loo",
   "repository": {
