@@ -28,10 +28,6 @@ workflows:
           filters:
             branches:
               # This sample config runs this job on any branch matching the regex below, however, it's more likely you want to only run this job on master.
-              only: /.*-heroku-deploy/ # Delete this line
-              # only: master  # Uncomment this line
-  deployment:
-    staging:
-      branch: testing
-      heroku:
-        appname: vue3-poster-shop
+              # only: /.*-heroku-deploy/ # Delete this line
+              only: testing  # Uncomment this line
+              appname: vue3-poster-shop
