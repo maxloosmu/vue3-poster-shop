@@ -10,17 +10,17 @@ See the completed project here: [http://poster-shop.vuejsdevelopers.com/](http:/
 #### Pre-installation
 
 Ensure [Node.js  >=4](https://nodejs.org/en/download/), [NPM](https://docs.npmjs.com) and [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) are installed on your system
- 
+
 #### Installation
 
 1. Install this code on your local system
-     
+
     1. Fork this repository (click 'Fork' button in top right corner)
     2. Clone the forked repository on your local file system
-    
+
         ```
         cd /path/to/install/location
-        
+
         git clone https://git.vuejsdevelopers.com/{your-namespace}/poster-shop/
         ```
 
@@ -35,7 +35,7 @@ Ensure [Node.js  >=4](https://nodejs.org/en/download/), [NPM](https://docs.npmjs
     ```
     npm install
     ```
-    
+
 4. Start project
 
     ```
@@ -54,3 +54,28 @@ Here are some common mistakes people make, check these before filing an issue:
 ```
 node -v
 ```
+
+## Updating for Heroku
+
+### In package.json
+
+  "scripts": {
+    "start": "node server.js",
+    "serve": "nodemon ./server.js --ignore node_modules/ -e js,html,css",
+    "lint": "eslint server.js public/script.js",
+    "postinstall": "npm run serve"
+  },
+
+### In config.yml
+
+workflows:
+  heroku_deploy:
+    jobs:
+      - node/test
+      - heroku/deploy-via-git:
+          requires:
+            - node/test
+          filters:
+            branches:
+              only: main
+
