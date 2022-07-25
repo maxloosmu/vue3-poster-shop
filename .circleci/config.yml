@@ -1,3 +1,9 @@
+# heroku auth:token
+#  ›   Warning: token will expire 08/24/2022
+#  ›   Use heroku authorizations:create to generate a
+#  ›   long-term token
+# 5d0cd3b5-5ca3-410b-b7cd-0c4c8c7ee581
+
 # Use the latest 2.1 version of CircleCI pipeline process engine.
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
@@ -18,6 +24,10 @@ workflows:
   # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
   # CircleCI will run this workflow on every commit.
   # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
+
+  # echo "No Heroku API key set, please set the HEROKU_API_KEY environment variable."
+  # echo "This can be found by running the `heroku auth:token` command locally."
+  # https://circleci.com/developer/orbs/orb/circleci/heroku
   sample:
     jobs:
       - node/test
