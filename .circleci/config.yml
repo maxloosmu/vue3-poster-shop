@@ -30,6 +30,14 @@ workflows:
   # https://circleci.com/developer/orbs/orb/circleci/heroku
   # https://circleci.com/docs/deployment-examples
   # https://circleci.com/docs/env-vars#setting-an-environment-variable-in-a-project
+
+  ## remote: !	Invalid path.
+  ## remote: !	Syntax is: https://git.heroku.com/<app>.git where <app> is your app's name.
+  # fatal: repository 'https://git.heroku.com/.git/' not found
+  # Exited with code exit status 128
+  # CircleCI received exit code 128
+  # https://devcenter.heroku.com/articles/git
+
   heroku_deploy:
     jobs:
       - node/test
@@ -41,4 +49,4 @@ workflows:
             branches:
               # This sample config runs this job on any branch matching the regex below, however, it's more likely you want to only run this job on master.
               # only: /.*-heroku-deploy/ # Delete this line
-              only: testing  # Uncomment this line
+              only: main  # Uncomment this line
