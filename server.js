@@ -41,7 +41,7 @@ if (process.env.NODE_ENV !== "production") {
 	require("reload")(app);
 }
 
-var port = process.env.PORT || 1000;
+var port = process.env.PORT || 8050;
 server.listen(port, function () {
 	console.log("Listening on port ".concat(port));
 });
