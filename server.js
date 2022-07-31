@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 var path = require("path");
-// var server = require("http").createServer(app);
+var server = require("http").createServer(app);
 var fs = require("fs");
 
 const https = require('https');
@@ -10,7 +10,11 @@ const options = {
   cert: fs.readFileSync('/etc/letsencrypt/live/cclaw.legalese.com/cert.pem')
 };
 
-var server = https.createServer(app);
+https.createServer(options, function (req, res) {
+  res.writeHead(200);
+  res.end("hello world\n");
+}).listen(8000);
+
 
 
 var bodyParser = require("body-parser");
