@@ -1,8 +1,17 @@
 var express = require("express");
 var app = express();
 var path = require("path");
-var server = require("http").createServer(app);
+// var server = require("http").createServer(app);
 var fs = require("fs");
+
+const https = require('https');
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/cclaw.legalese.com/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/cclaw.legalese.com/cert.pem')
+};
+
+var server = https.createServer(app);
+
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
