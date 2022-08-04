@@ -8,7 +8,6 @@ var https = require('https');
 var privkey = '/etc/letsencrypt/live/cclaw.legalese.com/privkey.pem'
 var seccert = '/etc/letsencrypt/live/cclaw.legalese.com/cert.pem'
 
-
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
@@ -18,13 +17,16 @@ app.get("/", function(req, res) {
 
 var directory;
 fs.readFile("./directory.json", "utf8", function(err, data) {
+	console.log(data.substring(0, 50));
 	directory = JSON.parse(data);
+	console.log(directory[0]);
 	if (err) {
 		throw err;
 	}
 });
 
 app.get("/search", function(req, res) {
+	console.log(req.query);
 	var results = directory.reduce(function(acc, file) {
 		if (file.tags.indexOf(req.query.q) !== -1) {
 			acc.push({

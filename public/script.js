@@ -5,7 +5,7 @@ Vue.createApp({
 		return {
 			total: 0,
 			cart: [],
-			search: "cat",
+			search: "orange",
 			lastSearch: "",
 			loading: false,
 			results: [],
@@ -51,7 +51,7 @@ Vue.createApp({
 			this.results = [];
 			this.listLength = 0;
 			this.loading = true;
-			setTimeout(() => this.delayFetch(), 3000);
+			setTimeout(() => this.delayFetch(), 2000);
 		},
 		appendResults() {
 			if (this.listLength < this.results.length) {
