@@ -94,7 +94,7 @@ workflows:
               only: main
 ```
 
-### Setting up
+### Setting up for Heroku website
 
 - Requirement to setup proper login at Heroku
 - Requirement to login from CLI
