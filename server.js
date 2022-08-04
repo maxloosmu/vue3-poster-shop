@@ -41,6 +41,13 @@ app.get("/search", function(req, res) {
 	res.send(results);
 });
 
+app.get('/headers', (req, res) => {
+  res.type('text/plain')
+  const headers = Object.entries(req.headers)
+    .map(([key, value]) => `${key}: ${value}`)
+  res.send(headers.join('\n'))
+})
+
 app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
