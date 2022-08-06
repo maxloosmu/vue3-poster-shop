@@ -3,10 +3,11 @@ var app = express();
 var path = require("path");
 var server = require("http").createServer(app);
 var fs = require("fs");
+var expressHandlebars = require('express-handlebars');
 
 var https = require('https');
-var privkey = '/etc/letsencrypt/live/cclaw.legalese.com/privkey.pem'
-var seccert = '/etc/letsencrypt/live/cclaw.legalese.com/cert.pem'
+var privkey = '/etc/letsencrypt/live/cclaw.legalese.com/privkey.pem';
+var seccert = '/etc/letsencrypt/live/cclaw.legalese.com/cert.pem';
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -47,6 +48,19 @@ app.get('/headers', (req, res) => {
     .map(([key, value]) => `${key}: ${value}`)
   res.send(headers.join('\n'))
 })
+app.engine('handlebars', expressHandlebars.engine({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars');
+app.get('/about', (req, res) => {
+  res.render('about');
+})
+app.get('/greeting', (req, res) => {
+  res.render('greeting', {
+    message: 'Hello esteemed programmer!',
+    style: req.query.style
+  })
+})
+
+
 
 app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
 app.use("/public", express.static(path.join(__dirname, "public")));
