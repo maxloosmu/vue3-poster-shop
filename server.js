@@ -4,6 +4,9 @@ var path = require("path");
 var server = require("http").createServer(app);
 var fs = require("fs");
 var expressHandlebars = require('express-handlebars');
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+const catNames = require('cat-names')
 
 var https = require('https');
 var privkey = '/etc/letsencrypt/live/cclaw.legalese.com/privkey.pem';
@@ -53,14 +56,26 @@ app.set('view engine', 'handlebars');
 app.get('/about', (req, res) => {
   res.render('about');
 })
+// the following is needed for cookie support
+app.use(cookieParser())
+// the following is needed for session support
+app.use(session({ resave: false, saveUninitialized: false, secret: 'keyboard cat' }))
 app.get('/greeting', (req, res) => {
   res.render('greeting', {
     message: 'Hello esteemed programmer!',
-    style: req.query.style
+    style: req.query.style,
+		userid: req.cookies.userid,
+    username: req.session.username
   })
 })
-
-
+app.get('/set-random-userid', (req, res) => {
+  res.cookie('userid', (Math.random()*10000).toFixed(0))
+  res.redirect('/greeting')
+})
+app.get('/set-random-username', (req, res) => {
+  req.session.username = catNames.random()
+  res.redirect('/greeting')
+})
 
 app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
 app.use("/public", express.static(path.join(__dirname, "public")));
