@@ -7,6 +7,7 @@ Source code for the case-study project from the course [Build Your First Vue.js 
 
 - https://max-vue3-poster-shop.herokuapp.com/
 - http://cclaw.legalese.com:8050/
+- http://cclaw.legalese.com:8055/
 - https://cclaw.legalese.com:8060/
 
 #### Demo
