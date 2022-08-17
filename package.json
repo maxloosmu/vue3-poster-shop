@@ -4,8 +4,10 @@
   "description": "Vue.js Poster Shop",
   "main": "index.js",
   "scripts": {
-    "serve": "nodemon ./server.js --ignore node_modules/ -e js,html,css",
-    "lint": "eslint server.js public/script.js"
+    "serve1": "nodemon ./server.js --ignore node_modules/ -e js,html,css",
+    "serve2": "nodemon ./server2.js",
+    "lint": "eslint server.js public/script.js",
+    "serve": "concurrently \"npm:serve1\" \"npm:serve2\""
   },
   "author": "Anthony Gore, Max Loo",
   "repository": {
@@ -29,6 +31,7 @@
     "vue": "^3.0.0-rc.9"
   },
   "devDependencies": {
+    "concurrently": "^5.0.0",
     "eslint": "~5.5.0",
     "nodemon": "^2.0.19",
     "reload": "~2.3.1"
