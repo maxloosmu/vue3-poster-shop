@@ -1,14 +1,16 @@
 const express = require('express')
 const app = express()
+var url
 
 app.use((req, res, next) => {
-	console.log(`processing request for ${req.url}....`)
+	url = req.protocol + '://' + req.get('host') + req.originalUrl
+	console.log(`processing request for ${url}....`)
 	next()
 })
 
 app.use((req, res, next) => {
 	console.log('terminating request')
-	res.send('thanks for playing!')	
+	res.send(`thanks for testing at ${url}!`)	
 	// note that we do NOT call next() here...this terminates the request
 })
 
